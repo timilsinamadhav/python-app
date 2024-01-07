@@ -20,5 +20,11 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+	stage('Cleanup') {
+            steps {
+                echo 'Cleaning pushed images....'
+		sh "docker rmi timilsinamadhav/python-app"
+            }
+        }
     }
 }
