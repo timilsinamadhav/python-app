@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker Image'
+		sh "whoami"
 		sh "docker build -t timilsinamadhav/python-app ."
             }
         }
