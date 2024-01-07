@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building Docker Image'
+		sh "docker build -t timilsinamadhav/python-app ."
             }
         }
-        stage('Test') {
+        stage('Tag and Publish') {
             steps {
-                echo 'Testing..'
+                echo 'Pushing to dockerhub..'
+		sh "docker push timilsinamadhav/python-app"
             }
         }
         stage('Deploy') {
