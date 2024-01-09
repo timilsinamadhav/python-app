@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        registry = "timilsinamadhav/python-app"
+    {
     agent any
 
     stages {
@@ -6,13 +9,13 @@ pipeline {
             steps {
                 echo 'Building Docker Image'
 		sh "whoami"
-		sh "docker build -t timilsinamadhav/python-app ."
+		sh "docker build -t $registry ."
             }
         }
         stage('Tag and Publish') {
             steps {
                 echo 'Pushing to dockerhub..'
-		sh "docker push timilsinamadhav/python-app"
+		sh "docker push $registry"
             }
         }
         stage('Deploy') {
@@ -23,7 +26,7 @@ pipeline {
 	stage('Cleanup') {
             steps {
                 echo 'Cleaning pushed images....'
-		sh "docker rmi timilsinamadhav/python-app"
+		sh "docker rmi $registry"
             }
         }
     }
