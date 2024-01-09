@@ -9,13 +9,13 @@ pipeline {
             steps {
                 echo 'Building Docker Image'
 		sh "env"
-		sh "docker build -t $registry:$BUILD_TAG ."
+		sh "docker build -t $registry:$BUILD_ID ."
             }
         }
         stage('Tag and Publish') {
             steps {
                 echo 'Pushing to dockerhub..'
-		sh "docker push $registry:$BUILD_TAG"
+		sh "docker push $registry:$BUILD_ID"
             }
         }
         stage('Deploy') {
@@ -26,7 +26,7 @@ pipeline {
 	stage('Cleanup') {
             steps {
                 echo 'Cleaning pushed images....'
-		sh "docker rmi $registry:$BUILD_TAG"
+		sh "docker rmi $registry:$BUILD_ID"
             }
         }
     }
