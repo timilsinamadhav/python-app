@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "timilsinamadhav/python-app"
-    {
+    }
     agent any
 
     stages {
