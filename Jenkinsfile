@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker Image'
-		sh "whoami"
+		sh "env"
 		sh "docker build -t $registry:$BUILD_TAG ."
             }
         }
